@@ -36,6 +36,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
+  padding-top: env(safe-area-inset-top, 0px);
 }
 button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
 button:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -136,7 +137,8 @@ input { font: inherit; }
 .board .cap { position: absolute; left: 10px; bottom: 10px; background: rgba(10, 12, 20, 0.75); padding: 3px 9px; border-radius: 20px; font-family: var(--cond); font-weight: 700; font-size: 13px; letter-spacing: 0.04em; }
 .board .cap.full { color: var(--amber); }
 
-.slot { position: absolute; transform: translate(-50%, -50%); width: 10.5%; max-width: 72px; min-width: 44px; display: flex; flex-direction: column; align-items: center; }
+.board { container-type: size; }
+.slot { position: absolute; transform: translate(-50%, -50%); width: 10.5%; width: min(10.5cqw, 14cqh); max-width: 72px; min-width: 34px; display: flex; flex-direction: column; align-items: center; }
 .slot-empty { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 2px dashed rgba(255, 255, 255, 0.35); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 15px; color: rgba(255, 255, 255, 0.65); background: rgba(0, 0, 0, 0.12); }
 .slot.walkon .slot-empty { border-style: dotted; }
 .slot.target .slot-empty, .slot.target .token { box-shadow: 0 0 0 3px var(--amber), 0 0 22px rgba(255, 182, 39, 0.7); border-color: var(--amber); }
@@ -218,7 +220,7 @@ input { font: inherit; }
 .compare .a { text-align: right; font-family: var(--display); font-size: 22px; }
 .compare .b { font-family: var(--display); font-size: 22px; }
 .board.mini-board { width: 100%; aspect-ratio: 1.15 / 1; border-radius: 10px; }
-.mini-board .slot { min-width: 0; width: 11.5%; }
+.mini-board .slot { min-width: 0; width: 11.5%; width: min(11.5cqw, 12cqh); }
 .mini-board .slot-name { font-size: 8.5px; max-width: 160%; }
 .mini-board .token { border-width: 2px; }
 .mini-board .token .pos-tag, .mini-board .token .cls-tag, .mini-board .token .gear { display: none; }
@@ -233,7 +235,7 @@ input { font: inherit; }
 table.stand { width: 100%; border-collapse: collapse; font-family: var(--cond); font-weight: 600; font-size: 14px; }
 table.stand th { text-align: left; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 4px; font-weight: 700; }
 table.stand td { padding: 5px 4px; border-top: 1px solid var(--line); white-space: nowrap; }
-table.stand td.tm { display: flex; align-items: center; gap: 6px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+table.stand td.tm span.tmw { display: flex; align-items: center; gap: 6px; max-width: 170px; overflow: hidden; white-space: nowrap; }
 table.stand tr.me td { background: rgba(255, 182, 39, 0.1); }
 table.stand tr.cut td { border-top: 2px dashed var(--amber); }
 table.stand .num { text-align: right; }
@@ -373,7 +375,7 @@ table.stand .num { text-align: right; }
 @media (max-width: 1180px) {
   .hub { grid-template-columns: 220px minmax(0, 1fr) 300px; }
 }
-@media (max-width: 980px) {
+@media (max-width: 1100px), (max-height: 720px) {
   body { font-size: 14px; }
   .hub { display: flex; flex-direction: column; height: auto; min-height: 100dvh; padding: 8px; gap: 8px; padding-bottom: calc(196px + var(--safe-b)); }
   .topbar { gap: 6px 8px; padding: 8px; }
@@ -390,9 +392,13 @@ table.stand .num { text-align: right; }
   .kickoff { display: none; }
   .topbar .icon-btn { position: absolute; right: 16px; top: 16px; }
   .topbar { position: relative; }
-  .board { aspect-ratio: 1 / 1.08; }
+  .board { aspect-ratio: 1 / 1.08; max-width: 620px; margin: 0 auto; }
+  .board-wrap { display: block; }
+  .bench, .locker, .bench-label { max-width: 620px; width: 100%; margin-left: auto; margin-right: auto; }
+  .mobile-tabs { max-width: 620px; width: 100%; margin: 0 auto; }
+  .shopbar > * { max-width: 760px; width: 100%; margin: 0 auto; }
   .board.mini-board { aspect-ratio: 1 / 1; }
-  .slot { width: 14%; min-width: 0; }
+  .slot { width: 14%; width: min(14cqw, 13.5cqh); min-width: 0; }
   .slot .slot-name { font-size: 9.5px; }
   .token .stars { font-size: 11px; top: -8px; }
   .token .pos-tag { font-size: 9.5px; line-height: 12px; }

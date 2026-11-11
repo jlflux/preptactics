@@ -63,7 +63,7 @@ export function playGame(app, ug, onDone) {
   const resize = () => {
     const wrap = canvas.parentElement;
     const maxW = wrap.clientWidth - 12;
-    const mobile = window.innerWidth <= 980;
+    const mobile = window.matchMedia('(max-width: 1100px), (max-height: 720px)').matches;
     const maxH = mobile ? Math.round(window.innerHeight * 0.42) : (wrap.clientHeight - 12 || 9999);
     V = maxW < 640 ? 55 : 80;
     let w = maxW;

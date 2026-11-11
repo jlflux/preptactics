@@ -243,7 +243,7 @@ export function regionTable(st, region, compact) {
   const list = regionStandings(st.season, region);
   return `<div class="region-title">Region ${region + 1}${region === 0 ? ' (yours)' : ''} · top 4 make the playoffs</div>
   <table class="stand"><tr><th>#</th><th>Team</th><th class="num">Reg</th><th class="num">All</th>${compact ? '' : '<th class="num">PF</th><th class="num">PA</th>'}</tr>
-  ${list.map((r, i) => `<tr class="${r.id === 'U' ? 'me' : ''} ${i === 4 ? 'cut' : ''}"><td>${i + 1}</td><td class="tm"><span class="dotc" style="background:${r.team.colors.main}"></span>${esc(r.team.name)}${r.id === st.season.rivalId ? ' ⚔️' : ''}</td><td class="num">${r.rw}-${r.rl}</td><td class="num">${r.w}-${r.l}</td>${compact ? '' : `<td class="num">${r.pf}</td><td class="num">${r.pa}</td>`}</tr>`).join('')}
+  ${list.map((r, i) => `<tr class="${r.id === 'U' ? 'me' : ''} ${i === 4 ? 'cut' : ''}"><td>${i + 1}</td><td class="tm"><span class="tmw"><span class="dotc" style="background:${r.team.colors.main}"></span>${esc(r.team.name)}${r.id === st.season.rivalId ? ' ⚔️' : ''}</span></td><td class="num">${r.rw}-${r.rl}</td><td class="num">${r.w}-${r.l}</td>${compact ? '' : `<td class="num">${r.pf}</td><td class="num">${r.pa}</td>`}</tr>`).join('')}
   </table>`;
 }
 
