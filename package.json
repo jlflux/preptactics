@@ -1,0 +1,9 @@
+{
+  "name": "preptactics",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "balance": "node tools/balance.mjs",
+    "serve": "python3 -m http.server 8080"
+  }
+}
